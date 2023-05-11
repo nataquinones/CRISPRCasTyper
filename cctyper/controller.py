@@ -97,8 +97,7 @@ class Controller(object):
             try:
                 os.mkdir(self.out)
             except FileExistsError:
-                logging.error('Directory '+self.out+' already exists')
-                sys.exit()
+                logging.warning('Directory '+self.out+' already exists')
 
     def check_input(self):
 

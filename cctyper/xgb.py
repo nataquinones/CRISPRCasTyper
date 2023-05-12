@@ -72,7 +72,6 @@ class XGB(object):
                 self.any_crispr = True
             else:
                 logging.info('No CRISPRs found.')
-                os.remove(self.out+'crisprs_all.tab')
            
             # Predict
             if self.any_crispr:

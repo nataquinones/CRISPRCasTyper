@@ -168,16 +168,25 @@ class Minced(object):
                 os.mkdir(self.out+'spacers')
             except FileExistsError:
                 logging.warning('Directory '+self.out+'spacers'+' already exists')
-                
+            
+
+            fsum = open(self.out+'all_spacers.fa', 'w')
             for crisp in self.crisprs:
                 f = open(self.out+'spacers/{}.fa'.format(crisp.crispr), 'w')
                 n = 0
                 for sq in crisp.spacers:
                     n += 1
                     f.write('>{}:{}\n'.format(crisp.crispr, n))
+                    fsum.write('>{}:{}\n'.format(crisp.crispr, n))
                     f.write('{}\n'.format(sq))
+                    fsum.write('{}\n'.format(sq))
 
                 f.close()
+            fsum.close()
+
+        else:
+            fsum = open(self.out+'all_spacers.fa', 'w')
+            fsum.close()
 
 
 

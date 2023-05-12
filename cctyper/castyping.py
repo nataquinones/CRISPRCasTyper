@@ -323,12 +323,11 @@ class Typer(object):
         if self.any_operon:
             operons_good = self.preddf[~self.preddf['Prediction'].isin(['False', 'Ambiguous'])]
             operons_put = self.preddf[self.preddf['Prediction'].isin(['False', 'Ambiguous'])]
-
-            if len(operons_good) > 0:
-                operons_good.to_csv(self.out+'cas_operons.tab', sep='\t', index=False)
-            if len(operons_put) > 0:    
-                operons_put.to_csv(self.out+'cas_operons_putative.tab', sep='\t', index=False)
             
+            operons_good.to_csv(self.out+'cas_operons.tab', sep='\t', index=False)
+            
+            operons_put.to_csv(self.out+'cas_operons_putative.tab', sep='\t', index=False)
+
             if not self.skip_blast:
                 # Get positions of Cas
                 cas_positions = list(zip(self.preddf['Contig'], self.preddf['Start'], self.preddf['End']))

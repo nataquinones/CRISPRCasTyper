@@ -164,7 +164,11 @@ class Minced(object):
     def write_spacers(self):
         
         if len(self.crisprs) > 0:
-            os.mkdir(self.out+'spacers')
+            try:
+                os.mkdir(self.out+'spacers')
+            except FileExistsError:
+                logging.warning('Directory '+self.out+'spacers'+' already exists')
+                
             for crisp in self.crisprs:
                 f = open(self.out+'spacers/{}.fa'.format(crisp.crispr), 'w')
                 n = 0

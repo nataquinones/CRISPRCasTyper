@@ -57,7 +57,12 @@ class HMMER(object):
         logging.info('Running HMMER against Cas profiles')
         
         # Make dir
-        os.mkdir(self.out+'hmmer')
+        try:
+            os.mkdir(self.out+'hmmer')
+        except FileExistsError:
+            print(f"Folder {self.out+'hmmer'} already exists.")
+        except Exception as e:
+            print(f"An error occurred while creating {self.out+'hmmer'}: {str(e)}")
         # Start multiprocess
         pool = mp.Pool(self.threads)
         # Each HMM
